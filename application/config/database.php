@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'conta',
+	'hostname' => 'us-cdbr-east-02.cleardb.com',
+	'username' => 'b90fffa8086cb9',
+	'password' => '86374941',
+	'database' => 'Conta',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
