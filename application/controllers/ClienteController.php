@@ -93,7 +93,7 @@ public function subirCompras(){
 			$datos['idCliente'] = $this->session->userdata('idCliente');
 			$datos['ruta'] = $file_info['file_name'];
 			$datos['tipo'] = "compra";
-			if($this->docModel->subirCompras($datos)){
+			if($this->doc_model->subirCompras($datos)){
 				$data['mensaje'] = "Se Cargo el Archivo Correctamente";
 				$this->load->view('layout/menu1');
 				$this->load->view('layout/header1');
@@ -142,7 +142,7 @@ public function subirCompras(){
 			$datos['idCliente'] = $this->session->userdata('idCliente');
 			$datos['ruta'] = $file_info['file_name'];
 			$datos['tipo'] = "venta";
-			if($this->docModel->subirCompras($datos)){
+			if($this->doc_model->subirCompras($datos)){
 				$data['mensaje'] = "Se Cargo el Archivo Correctamente";
 				$this->load->view('layout/menu1');
 				$this->load->view('layout/header1');
@@ -188,7 +188,7 @@ public function subirCompras(){
 			$datos['idCliente'] = $this->session->userdata('idCliente');
 			$datos['ruta'] = $file_info['file_name'];
 			$datos['tipo'] = "pago";
-			if($this->docModel->subirCompras($datos)){
+			if($this->doc_model->subirCompras($datos)){
 				$data['mensaje'] = "Se Cargo el Archivo Correctamente";
 				$this->load->view('layout/menu1');
 				$this->load->view('layout/header1');
@@ -234,7 +234,7 @@ public function subirCompras(){
 			$datos['idCliente'] = $this->session->userdata('idCliente');
 			$datos['ruta'] = $file_info['file_name'];
 			$datos['tipo'] = "cobro";
-			if($this->docModel->subirCompras($datos)){
+			if($this->doc_model->subirCompras($datos)){
 				$data['mensaje'] = "Se Cargo el Archivo Correctamente";
 				$this->load->view('layout/menu1');
 				$this->load->view('layout/header1');
