@@ -27,7 +27,7 @@ class ClienteController extends CI_Controller {
 	public function listarCliente(){
 
 		if( $this->input->is_ajax_request() ) {
-			$posts = $this->loginModel->obtenerCliente($this->session->userdata('idCliente'));
+			$posts = $this->login_model->obtenerCliente($this->session->userdata('idCliente'));
 			
 			echo json_encode($posts);
 		}

@@ -52,7 +52,7 @@ class ContadorController extends CI_Controller {
 			else{
 				$ajax_data = $this->input->post();
 
-				if($this->clienteModel->insertar($ajax_data)){
+				if($this->cliente_model->insertar($ajax_data)){
 					$data = array('responce' => 'success' , 'message' => 'Se Agrego Cliente');
 				}else{
 					$data = array('responce' => 'error' , 'message' => 'Error al agregar cliente');
@@ -73,7 +73,7 @@ class ContadorController extends CI_Controller {
 	public function listarCliente(){
 
 		if( $this->input->is_ajax_request() ) {
-			$posts = $this->clienteModel->listar();
+			$posts = $this->cliente_model->listar();
 			
 			echo json_encode($posts);
 		}
@@ -84,7 +84,7 @@ class ContadorController extends CI_Controller {
 	public function listarAsiento(){
 
 		if( $this->input->is_ajax_request() ) {
-			$posts = $this->asientoModel->listarAsiento();
+			$posts = $this->asiento_model->listarAsiento();
 			
 			echo json_encode($posts);
 		}
@@ -95,7 +95,7 @@ class ContadorController extends CI_Controller {
 		$fecha2 = $this->input->post('fecha2');
 
 		if( $this->input->is_ajax_request() ) {
-			$posts = $this->asientoModel->listarAsientoFecha($fecha1,$fecha2);
+			$posts = $this->asiento_model->listarAsientoFecha($fecha1,$fecha2);
 			
 			echo json_encode($posts);
 		}
@@ -106,7 +106,7 @@ class ContadorController extends CI_Controller {
 
 		if( $this->input->is_ajax_request() ) {
 			$del_id = $this->input->post('del_id');
-			if( $this->clienteModel->eliminar($del_id)){
+			if( $this->cliente_model->eliminar($del_id)){
 				$data = array('responce' => "success");
 			}else{
 				$data = array('responce' => "error");
@@ -121,7 +121,7 @@ class ContadorController extends CI_Controller {
 			if( $this->input->is_ajax_request() ) {
 				$edit_id = $this->input->post('edit_id');
 
-				if( $post = $this->clienteModel->seleccionar($edit_id)){
+				if( $post = $this->cliente_model->seleccionar($edit_id)){
 					$data = array('responce' => "success" , 'post' => $post);
 				}else{
 					$data = array('responce' => "error", 'message' => 'failed');
@@ -155,7 +155,7 @@ class ContadorController extends CI_Controller {
 				$data['RUC'] = $this->input->post('edit_RUC');
 				$data['razon_social'] = $this->input->post('edit_razon_social');
 
-				if($this->clienteModel->editar($data)){
+				if($this->cliente_model->editar($data)){
 					$data = array('responce' => 'success' , 'message' => 'Se Actualizo Cliente');
 				}else{
 					$data = array('responce' => 'error' , 'message' => 'Error al agregar cliente');
@@ -182,7 +182,7 @@ public function activoCliente(){
 
 		$data['idCliente'] = $this->input->post('act_id');
 
-		if($this->clienteModel->activo($data)){
+		if($this->cliente_model->activo($data)){
 			$data = array('responce' => 'success' , 'message' => 'Se Actualizo cliente' );
 		}else{
 			$data = array('responce' => 'error'  , 'message' => 'Error al Actualizar cliente');
@@ -251,7 +251,7 @@ public function ConsultarLibro(){
 	if( $this->input->is_ajax_request() ) {
 
 		$cuenta = $this->input->post('select1');
-		$asientos = $this->asientoModel->listarAsientos($cuenta);
+		$asientos = $this->asiento_model->listarAsientos($cuenta);
 		$data['cuenta'] = $cuenta ;
 		$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select1'))[0]->descripcion; 
 		$data['saldoDeudor'] = 0;
@@ -276,7 +276,7 @@ public function ConsultarLibro(){
 public function listarDocCompras(){
 
 	if( $this->input->is_ajax_request() ) {
-		$posts = $this->docModel->listarCompras();
+		$posts = $this->doc_model->listarCompras();
 		
 		echo json_encode($posts);
 	}
@@ -286,7 +286,7 @@ public function listarDocCompras(){
 public function listarDocVentas(){
 
 	if( $this->input->is_ajax_request() ) {
-		$posts = $this->docModel->listarVentas();
+		$posts = $this->doc_model->listarVentas();
 		
 		echo json_encode($posts);
 	}
@@ -296,7 +296,7 @@ public function listarDocVentas(){
 public function listarDocPagos(){
 
 	if( $this->input->is_ajax_request() ) {
-		$posts = $this->docModel->listarPagos();
+		$posts = $this->doc_model->listarPagos();
 		
 		echo json_encode($posts);
 	}
@@ -307,7 +307,7 @@ public function listarDocPagos(){
 public function listarDocCobros(){
 
 	if( $this->input->is_ajax_request() ) {
-		$posts = $this->docModel->listarCobros();
+		$posts = $this->doc_model->listarCobros();
 		
 		echo json_encode($posts);
 	}
@@ -316,16 +316,16 @@ public function listarDocCobros(){
 
 public function listarCTA(){
 	if( $this->input->is_ajax_request() ) {
-		$data["cuentas"] = $this->docModel->listarCuentas();
-		$data["asiento"] = $this->asientoModel->listarAsiento();
+		$data["cuentas"] = $this->doc_model->listarCuentas();
+		$data["asiento"] = $this->asiento_model->listarAsiento();
 		echo json_encode($data);
 	}
 }
 
 public function crearFormulario(){
 	if( $this->input->is_ajax_request() ) {
-		$data["cuentas"] = $this->docModel->listarCuentas();
-		$data["proveedor"] = $this->docModel->listarProveedor();
+		$data["cuentas"] = $this->doc_model->listarCuentas();
+		$data["proveedor"] = $this->doc_model->listarProveedor();
 		
 		echo json_encode($data);
 	}
@@ -354,19 +354,19 @@ public function registrarAsiento(){
 		$data['fechaVencimiento'] = $this->input->post('fechaVencimiento');
 		$data['ruta'] = $this->input->post('ruta');
 		
-		if( $this->asientoModel->registrarAsiento($data)){
+		if( $this->asiento_model->registrarAsiento($data)){
 
 			if($this->input->post('IGV') == "true"){
 				$data['debito']= 0.18 * (float)$this->input->post('importe');
 				$data['cuenta'] = "40111001";
 				$data['descripcion'] =  $this->seleccionarDescripcion("40111001")[0]->descripcion;
-				if( $this->asientoModel->registrarAsiento($data)){
+				if( $this->asiento_model->registrarAsiento($data)){
 					$data['credito']= (float)$this->input->post('importe') + (float)$data['debito'];
 					$var = (float)$this->input->post('importe');
 					$data['debito']= (float)0;
 					$data['cuenta'] = $this->input->post('select2');
 					$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select2'))[0]->descripcion; 
-					if( $this->asientoModel->registrarAsiento($data)){
+					if( $this->asiento_model->registrarAsiento($data)){
 						$dato = array(
 							'responce' => 'success' ,
 							'message' => 'Se REGISTRO ASIENTO',
@@ -389,7 +389,7 @@ public function registrarAsiento(){
 					$data['debito']= (float)0;
 					$data['cuenta'] = $this->input->post('select2');
 					$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select2'))[0]->descripcion; 
-					if( $this->asientoModel->registrarAsiento($data)){
+					if( $this->asiento_model->registrarAsiento($data)){
 						$dato = array(
 							'responce' => 'success' ,
 							'message' => 'Se REGISTRO ASIENTO',
@@ -436,7 +436,7 @@ public function registrarAsiento2(){
 		$data['fechaVencimiento'] = $this->input->post('fechaVencimiento');
 		$data['ruta'] = $this->input->post('ruta');
 		
-		if( $this->asientoModel->registrarAsiento($data)){
+		if( $this->asiento_model->registrarAsiento($data)){
 
 			
 				
@@ -445,12 +445,12 @@ public function registrarAsiento2(){
 					$data['debito']= (float)0;
 					$data['cuenta'] = $this->input->post('select2');
 					$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select2'))[0]->descripcion; 
-					if( $this->asientoModel->registrarAsiento($data)){
+					if( $this->asiento_model->registrarAsiento($data)){
 						
 						
 							
 						$ruta = $this->input->post('ruta');
-						if($this->docModel->editarEstado($ruta)){
+						if($this->doc_model->editarEstado($ruta)){
 							$dato = array('responce' => 'success' , 'message' => 'Se REGISTRO ASIENTO' );
 						}else{
 							$dato = array('responce' => 'error' , 'message' => 'HUBO UN ERROR AL REGISTRAR' );
@@ -473,23 +473,23 @@ public function registrarAsiento2(){
 
 
 public function seleccionarDescripcion($codigo){
-	return $this->docModel->seleccionarDescripcion($codigo);
+	return $this->doc_model->seleccionarDescripcion($codigo);
 }
 
 public function seleccionarRazonSocial($ruc){
-	return $this->docModel->seleccionarRazonSocial($ruc);
+	return $this->doc_model->seleccionarRazonSocial($ruc);
 }
 
 public function seleccionarRazonSocialEmpresa($ruc){
-	return $this->docModel->seleccionarRazonSocialEmpresa($ruc);
+	return $this->doc_model->seleccionarRazonSocialEmpresa($ruc);
 }
 
 
 
 public function crearFormularioVenta(){
 	if( $this->input->is_ajax_request() ) {
-		$data["cuentas"] = $this->docModel->listarCuentas();
-		$data["empresa"] = $this->docModel->listarEmpresa();
+		$data["cuentas"] = $this->doc_model->listarCuentas();
+		$data["empresa"] = $this->doc_model->listarEmpresa();
 		
 		echo json_encode($data);
 	}
@@ -521,7 +521,7 @@ public function registrarAsientoVenta(){
 		$data['ruta'] = $this->input->post('ruta');
 		
 		
-		if( $this->asientoModel->registrarAsiento($data)){
+		if( $this->asiento_model->registrarAsiento($data)){
 
 			if($this->input->post('IGV') == "true"){
 
@@ -529,17 +529,17 @@ public function registrarAsientoVenta(){
 				$data['cuenta'] = "40111001";
 				$data['descripcion'] =  $this->seleccionarDescripcion("40111001")[0]->descripcion;
 
-				if( $this->asientoModel->registrarAsiento($data)){
+				if( $this->asiento_model->registrarAsiento($data)){
 
 					$data['debito']= (float)$this->input->post('importe') + (float)$data['credito'];
 					$data['credito']= (float)0;
 					$data['cuenta'] = $this->input->post('select2');
 					$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select2'))[0]->descripcion; 
 
-					if( $this->asientoModel->registrarAsiento($data)){
+					if( $this->asiento_model->registrarAsiento($data)){
 
 						$ruta = $this->input->post('ruta');
-						if($this->docModel->editarEstado($ruta)){
+						if($this->doc_model->editarEstado($ruta)){
 							$dato = array('responce' => 'success' , 'message' => 'Se REGISTRO ASIENTO' );
 						}else{
 							$dato = array('responce' => 'error' , 'message' => 'HUBO UN ERROR AL REGISTRAR' );
@@ -557,11 +557,11 @@ public function registrarAsientoVenta(){
 					$data['cuenta'] = $this->input->post('select2');
 					$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select2'))[0]->descripcion; 
 
-				if( $this->asientoModel->registrarAsiento($data)){
+				if( $this->asiento_model->registrarAsiento($data)){
 
 					$ruta = $this->input->post('ruta');
 
-					if($this->docModel->editarEstado($ruta)){
+					if($this->doc_model->editarEstado($ruta)){
 						$dato = array('responce' => 'success' , 'message' => 'Se REGISTRO ASIENTO' );
 					}else{
 						$dato = array('responce' => 'error' , 'message' => 'HUBO UN ERROR AL REGISTRAR' );
@@ -587,8 +587,8 @@ public function registrarAsientoVenta(){
 
 public function crearFormularioCobro(){
 	if( $this->input->is_ajax_request() ) {
-		$data["cuentas"] = $this->docModel->listarCuentas();
-		$data["empresa"] = $this->docModel->listarEmpresa();
+		$data["cuentas"] = $this->doc_model->listarCuentas();
+		$data["empresa"] = $this->doc_model->listarEmpresa();
 		
 		echo json_encode($data);
 	}
@@ -617,17 +617,17 @@ public function registrarAsientoCobro(){
 		$data['fechaVencimiento'] = $this->input->post('fechaVencimiento');
 		$data['ruta'] =$this->input->post('ruta');
 
-		if( $this->asientoModel->registrarAsiento($data)){
+		if( $this->asiento_model->registrarAsiento($data)){
 
 			
 				$data['credito']= (float)$this->input->post('importe');
 				$data['debito']= (float)0;
 				$data['cuenta'] = $this->input->post('select2');
 				$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select2'))[0]->descripcion;
-							if( $this->asientoModel->registrarAsiento($data)){
+							if( $this->asiento_model->registrarAsiento($data)){
 
 									$ruta = $this->input->post('ruta');
-									if($this->docModel->editarEstado1($ruta)){
+									if($this->doc_model->editarEstado1($ruta)){
 										$dato = array('responce' => 'success' , 'message' => 'Se REGISTRO ASIENTO' );
 									}else{
 										$dato = array('responce' => 'error' , 'message' => 'HUBO UN ERROR AL REGISTRAR' );
@@ -653,8 +653,8 @@ public function registrarAsientoCobro(){
 
 public function crearFormularioPago(){
 	if( $this->input->is_ajax_request() ) {
-		$data["cuentas"] = $this->docModel->listarCuentas();
-		$data["proveedor"] = $this->docModel->listarProveedor();
+		$data["cuentas"] = $this->doc_model->listarCuentas();
+		$data["proveedor"] = $this->doc_model->listarProveedor();
 		
 		echo json_encode($data);
 	}
@@ -683,7 +683,7 @@ public function registrarAsientoPago(){
 		$data['fechaVencimiento'] = $this->input->post('fechaVencimiento');
 		$data['ruta'] =$this->input->post('ruta');
 
-		if( $this->asientoModel->registrarAsiento($data)){
+		if( $this->asiento_model->registrarAsiento($data)){
 
 			
 				
@@ -691,11 +691,11 @@ public function registrarAsientoPago(){
 					$data['debito']= (float)0;
 					$data['cuenta'] = $this->input->post('select2');
 					$data['descripcion'] =  $this->seleccionarDescripcion($this->input->post('select2'))[0]->descripcion; 
-					if( $this->asientoModel->registrarAsiento($data)){
+					if( $this->asiento_model->registrarAsiento($data)){
 						
 						
 								$ruta = $this->input->post('ruta');
-								if($this->docModel->editarEstado1($ruta)){
+								if($this->doc_model->editarEstado1($ruta)){
 									$dato = array('responce' => 'success' , 'message' => 'Se REGISTRO ASIENTO' );
 								}else{
 									$dato = array('responce' => 'error' , 'message' => 'HUBO UN ERROR AL REGISTRAR' );
@@ -719,8 +719,8 @@ public function registrarAsientoPago(){
 
 
 public function obtenerCorrelativo(){
-	if($this->asientoModel->obtenerCorrelativo1()){
-		$resultado = $this->asientoModel->obtenerCorrelativo1();
+	if($this->asiento_model->obtenerCorrelativo1()){
+		$resultado = $this->asiento_model->obtenerCorrelativo1();
 		return (int)$resultado[0]->correlativo;
 	}else{
 		return (int)0;
@@ -773,7 +773,7 @@ public function registrarCuenta(){
 		$data['descripcion'] = $this->input->post('descripcion');
 		$data['tipo'] = $this->input->post('tipo');
 
-		if($this->docModel->registrarCuenta($data)){
+		if($this->doc_model->registrarCuenta($data)){
 			$dato = array('responce' => 'success' , 'message' => 'Se Registro Cuenta' );
 		}else{
 			$dato = array('responce' => 'error' , 'message' => 'Hubo un error al Registrar Cuenta' );

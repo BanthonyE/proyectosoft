@@ -30,7 +30,7 @@ class LoginController extends CI_Controller {
     }
 
     public function ingresar(){
-        $this->loginModel->crearSesion();
+        $this->login_model->crearSesion();
 
             $this->load->view('layout/menu');
             $this->load->view('layout/header');
@@ -45,15 +45,15 @@ class LoginController extends CI_Controller {
             $password = $this->input->post('password');
 
             if($usuario == "admin" || $password == "admin"){
-                $this->loginModel->crearSesion();
+                $this->login_model->crearSesion();
 
                 $this->load->view('layout/menu');
                 $this->load->view('layout/header');
                 $this->load->view('contador/inicio.php');
                 $this->load->view('layout/footer');
             }else{
-                 if(isset( $this->loginModel->validar($usuario ,$password)['0']->nombre )) {
-                    $dato['usuario'] = $this->loginModel->obtenerCliente($this->session->userdata('idCliente'));
+                 if(isset( $this->login_model->validar($usuario ,$password)['0']->nombre )) {
+                    $dato['usuario'] = $this->login_model->obtenerCliente($this->session->userdata('idCliente'));
                     $this->load->view('layout/menu1');
                     $this->load->view('layout/header1');
                     $this->load->view('cliente/inicio.php',$dato);
