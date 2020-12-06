@@ -6,9 +6,9 @@ class ClienteController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('clienteModel');
-		$this->load->model('docModel');
-		$this->load->model('loginModel');
+		$this->load->model('cliente_model');
+		$this->load->model('doc_model');
+		$this->load->model('login_model');
 		$this->load->helper(array('form','url'));
 		$this->load->library('form_validation');
 		$this->output->set_header("Access-Control-Allow-Origin:*");
@@ -19,7 +19,6 @@ class ClienteController extends CI_Controller {
 
 	public function index()
 	{
-		
 		$this->load->view('layout/menu1');
 		$this->load->view('layout/header1');
 		$this->load->view('layout/footer');

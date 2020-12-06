@@ -7,9 +7,9 @@ class ContadorController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('clienteModel');
-		$this->load->model('docModel');
-		$this->load->model('asientoModel');
+		$this->load->model('cliente_model');
+		$this->load->model('doc_model');
+		$this->load->model('asiento_model');
 		$this->load->helper(array('form','url'));
 		$this->load->library('form_validation');
 		$this->output->set_header("Access-Control-Allow-Origin:*");
