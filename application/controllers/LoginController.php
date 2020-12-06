@@ -6,8 +6,8 @@ class LoginController extends CI_Controller {
     public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('ClienteModel');
-		$this->load->model('LoginModel');
+		$this->load->model('clienteModel');
+		$this->load->model('loginModel');
 		$this->load->helper(array('form','url'));
 		$this->load->library('form_validation');
 		$this->output->set_header("Access-Control-Allow-Origin:*");
